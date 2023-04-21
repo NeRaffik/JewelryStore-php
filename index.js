@@ -11,7 +11,7 @@ spinnerPage.render();
 let CATALOG = [];
 
 //https://api.myjson.online/v1/records/d9537e83-d34f-44e2-9c27-85a0f8951740
-fetch("ajax.php",{//'server/launch.json'
+fetch("ajaxProductsList.php",{//'server/launch.json'
         method: 'POST', // GET, PUT, DELETE
         headers: {
             'Content-type': 'application/json; charset=UTF-8',

@@ -20,19 +20,19 @@ class Products{
         headerPage.render(products.length);
     }
 
-    // openProductPage(id){
-    //     productPage.render(id);
-    // }
+    openProductPage(element){
+        productPage.render(element);
+    }
 
     render(){
         const productsStore = LocalStorageUtil.getProducts();
         let htmlCatalog = '';
 
-        CATALOG.forEach(({Id,ProductName,ImagePath,ProductPrice}) => {
+        CATALOG.forEach((element) => {
             let activeClass = '';
             let activeText = '';
 
-            if (productsStore.indexOf(Id) === -1) {
+            if (productsStore.indexOf(element.Id) === -1) {
                 activeText = this.lableAdd;
             } else {
                 activeText = this.lableRemove;
@@ -41,12 +41,15 @@ class Products{
 
             htmlCatalog += `
               <li class="products-element">
-                <span class="products-element__productName">${ProductName}</span>
-                <img class="products-element__img" src = "${ImagePath}" /> 
+                <span class="products-element__productName description_select">${element.ProductName}</span>
+                <button class="description__btn" onclick="productsPage.openProductPage('${element}');">
+                     Описание
+                </button>
+                <img class="products-element__img" src = "${element.ImagePath}" />
                 <span class="products-element__price">
-                    ${parseInt(ProductPrice).toLocaleString()} ₽ 
+                    ${parseInt(element.ProductPrice).toLocaleString()} ₽ 
                 </span>
-                <button class="products-element__btn${activeClass}" onclick="productsPage.handlSetLocationStorage(this,'${Id}');">
+                <button class="products-element__btn${activeClass}" onclick="productsPage.handlSetLocationStorage(this,'${element.Id}');">
                     ${activeText}
                 </button>
               </li>  
